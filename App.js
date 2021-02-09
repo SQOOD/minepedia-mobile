@@ -18,8 +18,10 @@ import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client'
 
 import Route from './route'
 
+const urlPath = 'https://localhost/api/';
+
 const client = new ApolloClient({
-  uri: 'https://minepedia.southeastasia.cloudapp.azure.com/api/',
+  uri: urlPath,
   cache: new InMemoryCache()
 });
 
