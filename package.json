@@ -8,15 +8,40 @@
     "eject": "expo eject"
   },
   "dependencies": {
+    "@apollo/client": "^3.1.4",
+    "@eva-design/eva": "^2.0.0",
+    "@lingui/macro": "^3.2.3",
+    "@lingui/react": "^3.2.3",
+    "@react-native-community/masked-view": "0.1.10",
+    "@react-native-picker/picker": "^1.9.4",
+    "@react-navigation/material-top-tabs": "^5.2.16",
+    "@react-navigation/native": "^5.7.2",
+    "@react-navigation/stack": "^5.8.0",
+    "@ui-kitten/components": "^5.0.0",
+    "@ui-kitten/eva-icons": "^5.0.0",
+    "currency.js": "^2.0.3",
     "expo": "~39.0.2",
+    "expo-font": "~8.3.0",
+    "expo-secure-store": "~9.2.0",
     "expo-status-bar": "~1.0.2",
+    "graphql": "^15.3.0",
+    "randomcolor": "^0.6.2",
     "react": "16.13.1",
     "react-dom": "16.13.1",
     "react-native": "https://github.com/expo/react-native/archive/sdk-39.0.4.tar.gz",
-    "react-native-web": "~0.13.12"
+    "react-native-gesture-handler": "~1.7.0",
+    "react-native-maps": "0.27.1",
+    "react-native-screens": "~2.10.1",
+    "react-native-snap-carousel": "^3.9.1",
+    "react-native-svg": "12.1.0",
+    "react-native-tailwindcss": "^1.1.11",
+    "react-native-web": "~0.13.12",
+    "reactotron-react-native": "^5.0.0",
+    "url": "^0.11.0"
   },
   "devDependencies": {
-    "@babel/core": "~7.9.0"
+    "@babel/core": "~7.9.0",
+    "babel-plugin-module-resolver": "^4.0.0"
   },
   "private": true
 }

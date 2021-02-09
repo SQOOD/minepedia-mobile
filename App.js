@@ -1,21 +1,65 @@
-import { StatusBar } from 'expo-status-bar';
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
-
-export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+if (__DEV__) {
+  import('./reactotron.config').then(() =>
+    console.log('Reactotron Configured')
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
+import React, { useState } from 'react';
+import { StatusBar } from 'expo-status-bar';
+import { AppLoading } from 'expo';
+import { Layout, ApplicationProvider, IconRegistry } from '@ui-kitten/components';
+import { EvaIconsPack } from '@ui-kitten/eva-icons';
+import { NavigationContainer } from '@react-navigation/native';
+import { enableScreens } from 'react-native-screens';
+import * as eva from '@eva-design/eva'
+import 'react-native-gesture-handler'
+import { t } from 'react-native-tailwindcss'
+import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client'
+
+import Route from './route'
+
+const client = new ApolloClient({
+  uri: 'https://minepedia.southeastasia.cloudapp.azure.com/api/',
+  cache: new InMemoryCache()
 });
+
+const App = () => {
+  const [ready,setReady] = useState(false)
+  enableScreens();
+
+  const _cacheResourcesAsync = async () => {
+    const images = [require('@img/icon.png')]
+
+    const cacheImages = images.map(image => {
+      return Asset.fromModule(image).downloadAsync()
+    })
+    
+    return Promise.all(cacheImages)
+  }
+
+  if (ready) {
+    return (
+      <AppLoading
+        startAsync={_cacheResourcesAsync}
+        onFinish={() => setReady(true)}
+        onError={console.warn}
+      />
+    ); 
+  }
+
+  return (
+    <ApolloProvider client={client}>
+      <StatusBar style='auto'/>
+      <IconRegistry icons={EvaIconsPack} />
+      <NavigationContainer>
+        <ApplicationProvider {...eva} theme={eva.light}>
+          <Layout style={[t.mT8,t.hFull,t.flex]}>
+            <Route/>
+          </Layout>
+        </ApplicationProvider>
+      </NavigationContainer>
+    </ApolloProvider>
+  );
+}
+
+export default App
